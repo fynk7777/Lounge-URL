@@ -1,16 +1,27 @@
 import os
 import re
+import aiohttp
 from datetime import datetime, timedelta
-
+from keep_alive import keep_alive
 import discord
 import requests
 from bs4 import BeautifulSoup
 from discord.ext import commands
 
-TOKEN = os.environ["DISCORD_TOKEN"]
-intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+TOKEN = os.getenv("DISCORD_TOKEN")
 
+# Intentsの設定
+intents = discord.Intents.default()
+intents.dm_messages = True  # DMメッセージを受信するための設定
+intents.messages = True      # サーバーでのメッセージを受信するための設定
+intents.message_content = True
+intents.members = True
+
+bot = commands.Bot(command_prefix='/', intents=intents)
+intents = discord.Intents.default()
+intents.message_content = True
+intents.members = True
+client = discord.Client(intents=intents)
 
 def time_format(time: str) -> str:
     time = time[:23] + "Z"
