@@ -12,7 +12,6 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 
 # Intentsの設定
 intents = discord.Intents.default()
-intents.dm_messages = True  # DMメッセージを受信するための設定
 intents.messages = True      # サーバーでのメッセージを受信するための設定
 intents.message_content = True
 intents.members = True
@@ -69,5 +68,9 @@ async def on_message(message):
         embed.set_image(url=f"https://www.mk8dx-lounge.com/TableImage/{id}.png")
         await message.reply(embed=embed)
 
-
-bot.run(TOKEN)
+# Discordボットの起動とHTTPサーバーの起動
+try:
+    keep_alive()
+    bot.run(TOKEN)
+except Exception as e:
+    print(f'エラーが発生しました: {e}')
