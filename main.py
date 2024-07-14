@@ -1,5 +1,6 @@
 import os
 import re
+import platform
 from datetime import datetime, timedelta
 
 import discord
@@ -45,7 +46,12 @@ async def on_ready():
     await bot.reload_extension('jishaku')
     print(f"Logged in as {bot.user.name}")
     c = await bot.fetch_channel(1245028296417349656)
-    e = discord.Embed(title="updated!", description=f"extensions: {bot.extensions}")
+    d = [
+        f"extensions: ```python\n{bot.extensions}```",
+        f"platform: `{platform.platform()}`",
+        f"runtime: `{platform.python_implementation()} - {platform.python_version()}`"
+    ]
+    e = discord.Embed(title="updated!", description='\n'.join(d), color=0x00ff00)
     await c.send(embed=e)
 
 
