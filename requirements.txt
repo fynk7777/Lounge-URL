@@ -4,3 +4,4 @@ beautifulsoup4
 Flask
 requests
 bs4
+jishaku
