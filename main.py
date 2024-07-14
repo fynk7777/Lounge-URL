@@ -13,7 +13,7 @@ from keep_alive import keep_alive
 TOKEN = os.environ["DISCORD_TOKEN"]
 
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix='/', intents=intents)
+bot = commands.Bot(command_prefix='lu.', intents=intents)
 bot.owner_ids = [1212687868603007067, 987965367106293760]
 
 
