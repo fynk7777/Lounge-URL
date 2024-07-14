@@ -23,6 +23,7 @@ def time_format(time: str) -> str:
     jst = utc + timedelta(hours=9)
     return jst.strftime("%Y/%m/%d %H:%M:%S")
 
+
 def parse(id: int) -> dict[str, int | datetime | str]:
     res = requests.get(f'https://www.mk8dx-lounge.com/TableDetails/{str(id)}')
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -42,6 +43,8 @@ def parse(id: int) -> dict[str, int | datetime | str]:
 async def on_ready():
     await bot.load_extension('jishaku')
     print(f"Logged in as {bot.user.name}")
+    c = await bot.fetch_channel(1245028296417349656)
+    await c.send(embed=discord.Embed(title="updated!"))
 
 
 @bot.event
@@ -63,6 +66,7 @@ async def on_message(message):
         embed.add_field(name="Tier", value=data["tier"])
         embed.set_image(url=f"https://www.mk8dx-lounge.com/TableImage/{id}.png")
         await message.reply(embed=embed)
+
 
 # Discordボットの起動とHTTPサーバーの起動
 try:
