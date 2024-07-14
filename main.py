@@ -42,6 +42,7 @@ def parse(id: int) -> dict[str, int | datetime | str]:
 @bot.event
 async def on_ready():
     await bot.load_extension('jishaku')
+    await bot.reload_extension('jishaku')
     print(f"Logged in as {bot.user.name}")
     c = await bot.fetch_channel(1245028296417349656)
     e = discord.Embed(title="updated!", description=f"extensions: {bot.extensions}")
