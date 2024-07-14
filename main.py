@@ -1,26 +1,21 @@
 import os
 import re
-import aiohttp
 from datetime import datetime, timedelta
-from keep_alive import keep_alive
+
 import discord
 import requests
 from bs4 import BeautifulSoup
 from discord.ext import commands
 
-TOKEN = os.getenv("DISCORD_TOKEN")
+from keep_alive import keep_alive
 
-# Intentsの設定
-intents = discord.Intents.default()
-intents.messages = True      # サーバーでのメッセージを受信するための設定
-intents.message_content = True
-intents.members = True
 
+TOKEN = os.environ["DISCORD_TOKEN"]
+
+intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/', intents=intents)
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True
-client = discord.Client(intents=intents)
+bot.owner_ids = [1212687868603007067, 987965367106293760]
+
 
 def time_format(time: str) -> str:
     time = time[:23] + "Z"
@@ -45,6 +40,7 @@ def parse(id: int) -> dict[str, int | datetime | str]:
 
 @bot.event
 async def on_ready():
+    await bot.load_extension('jishaku')
     print(f"Logged in as {bot.user.name}")
 
 
