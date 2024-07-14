@@ -44,7 +44,8 @@ async def on_ready():
     await bot.load_extension('jishaku')
     print(f"Logged in as {bot.user.name}")
     c = await bot.fetch_channel(1245028296417349656)
-    await c.send(embed=discord.Embed(title="updated!"))
+    e = discord.Embed(title="updated!", description=f"extensions: {bot.extensions}")
+    await c.send(embed=e)
 
 
 @bot.event
