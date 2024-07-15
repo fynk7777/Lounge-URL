@@ -33,7 +33,7 @@ def parse(id: int) -> dict[str, int | datetime | str]:
     results = {
         "id": id,
         "created": time_format(data[3].findChildren()[0].get('data-time')),
-        "verified": time_format(data[6].findChildren()[0].get('data-time')),
+        "verified": "Not Verified Yet" if data[6].findChildren()[0].get('data-time') == '' else time_format(data[6].findChildren()[0].get('data-time')),
         "format": data[9].text.strip(),
         "tier": data[11].text.strip()
     }
