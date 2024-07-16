@@ -73,7 +73,7 @@ async def on_message(message):
         embed.add_field(name="Format", value=data["format"])
         embed.add_field(name="Tier", value=data["tier"])
         embed.set_image(url=f"https://www.mk8dx-lounge.com/TableImage/{id}.png")
-        await message.reply(embed=embed)
+        await message.reply(embed=embed, mention_author=False)
 
 
 # Discordボットの起動とHTTPサーバーの起動
