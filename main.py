@@ -78,7 +78,7 @@ async def on_message(message):
 
 
     # 「r!test」が送信された場合に「あ」と返す
-    if message.content == "r!test":
+    if message.content == "b!test" or message.content == "l!test":
         await message.channel.send("GitHubで起動されています")
 
 
