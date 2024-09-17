@@ -77,6 +77,11 @@ async def on_message(message):
     await bot.process_commands(message)
 
 
+    # 「r!test」が送信された場合に「あ」と返す
+    if message.content == "r!test":
+        await message.channel.send("GitHubで起動されています")
+
+
 # Discordボットの起動とHTTPサーバーの起動
 try:
     keep_alive()
